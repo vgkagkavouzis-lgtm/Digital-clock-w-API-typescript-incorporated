@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./src/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>clock-typescript</title>
+  </head>
+  <body>
+    <nav>
+        <div id="toggle12hour">
+            <button class="btn">12h</button>
+        </div>
+        <div id="toggleNightMode">
+            <button class="btn" id="day-night-toggle">
+                <img src="./public/icons/dark_mode_light.svg" alt="dark mode">
+                <img src="./public/icons/light_mode.svg" alt="light mode">
+            </button>
+        </div>
+        <!-- <button class="night-mode"></button> -->
+    </nav>
+    <section id="header">
+        <div id="title-info">
+            <h1>What time is it?</h1>
+            <p>A web app to get any time you need!</p>
+        </div>  
+        <div id="local-time">
+            <p>Local time · <span id="localZoneDisplay"></span></p>
+            <h6 id="localTimeP">
+                <span id="localTime"></span>
+                <span id="localPeriod"></span>
+                <span id="localOffset"></span>
+            </h6>
+        </div>
+    </section>
+    <section id="main-input-select-container">
+        <div class="assistant-display">
+            <p>Search something</p>
+        </div>
+        <div class="input">
+            <form action="" id="main-input-form">
+                <label for="">Find a city  </label> 
+                <input type="text" class="" placeholder="Search city / country" autocomplete="off" id="searchBar">
+                <div id="container-working-hours-info">
+                    <div id="div-working-hours">
+                        <div id="div-color-box-work"></div>
+                        <p id="p-color-box-work">Work 09-17</p>
+                    </div>
+                    <div id="div-awake-hours">
+                        <div id="div-color-box-awake"></div>
+                        <p id="p-color-box-awake">Awake</p>
+                    </div>
+                    <div id="div-sleep-hours">
+                        <div id="div-color-box-sleep"></div>
+                        <p id="p-color-box-sleep">Sleep 23-07</p>
+                    </div>
+                </div>
+                <div class="suggestions-box">
+                    <!-- <div class="suggestions highlight">sdfsdfsdf</div> -->
+                </div>    
+            </form> 
+            <div id="main-select-input">
+                <label for="timeZoneSelect">Or choose a timezone</label>
+                <select id="timeZoneSelect" class="">
+                    <option value="Choose a time-zone">Choose a time-zone</option>
+                </select>
+            </div>
+        </div>
+    </section>
+    <section id="middle-section">
+        <section id="display-w-btn">
+            <div class="container-display">
+                <div id="displays">
+                    <h3><span id="city">City</span>, <span id="country">Country</span></h3>
+                    <div id="timeP">
+                        <p id="time">Time</p>
+                        <p id="period"> Period</p>
+                    </div>
+                    <div id="timezone-offset">
+                        <p id="time-zone">Timezone</p>
+                        <p>·</p>
+                        <p id="offset">Offset</p>  
+                    </div>
+                    <div class="visual-23h-boxes-container">
+                        <div class="hour-div-plus-label-div">
+                            <div class="00-hours-div visual-box-24h visual-box-24h-small"></div>
+                            <div class="00-hours-div label-box-24h">00</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="01-hours-div visual-box-24h visual-box-24h-small"></div>
+                            <div class="01-hours-div label-box-24h">01</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="02-hours-div visual-box-24h visual-box-24h-small"></div>
+                            <div class="02-hours-div label-box-24h">02</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="03-hours-div visual-box-24h visual-box-24h-small"></div>
+                            <div class="03-hours-div label-box-24h">03</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="04-hours-div visual-box-24h visual-box-24h-small"></div>
+                            <div class="04-hours-div label-box-24h">04</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="05-hours-div visual-box-24h visual-box-24h-medium"></div>
+                            <div class="05-hours-div label-box-24h">05</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="06-hours-div visual-box-24h visual-box-24h-medium"></div>
+                            <div class="06-hours-div label-box-24h">06</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="07-hours-div visual-box-24h visual-box-24h-medium"></div>
+                            <div class="07-hours-div label-box-24h">07</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="08-hours-div visual-box-24h visual-box-24h-medium"></div>
+                            <div class="08-hours-div label-box-24h">08</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="09-hours-div visual-box-24h visual-box-24h-large"></div>
+                            <div class="09-hours-div label-box-24h">09</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="10-hours-div visual-box-24h visual-box-24h-large"></div>
+                            <div class="10-hours-div label-box-24h">10</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="11-hours-div visual-box-24h visual-box-24h-middle"></div>
+                            <div class="11-hours-div label-box-24h">11</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="12-hours-div visual-box-24h visual-box-24h-middle"></div>
+                            <div class="12-hours-div label-box-24h">12</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="13-hours-div visual-box-24h visual-box-24h-large"></div>
+                            <div class="13-hours-div label-box-24h">13</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="14-hours-div visual-box-24h visual-box-24h-large"></div>
+                            <div class="14-hours-div label-box-24h">14</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="15-hours-div visual-box-24h visual-box-24h-medium"></div>
+                            <div class="15-hours-div label-box-24h">15</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="16-hours-div visual-box-24h visual-box-24h-medium"></div>
+                            <div class="16-hours-div label-box-24h">16</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="17-hours-div visual-box-24h visual-box-24h-medium"></div>
+                            <div class="17-hours-div label-box-24h">17</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="18-hours-div visual-box-24h visual-box-24h-medium"></div>
+                            <div class="18-hours-div label-box-24h">18</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="19-hours-div visual-box-24h visual-box-24h-small"></div>
+                            <div class="19-hours-div label-box-24h">19</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="20-hours-div visual-box-24h visual-box-24h-small"></div>
+                            <div class="20-hours-div label-box-24h">20</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="21-hours-div visual-box-24h visual-box-24h-small"></div>
+                            <div class="21-hours-div label-box-24h">21</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="22-hours-div visual-box-24h visual-box-24h-small"></div>
+                            <div class="22-hours-div label-box-24h">22</div>
+                        </div>
+                        <div class="hour-div-plus-label-div">
+                            <div class="23-hours-div visual-box-24h visual-box-24h-small"></div>
+                            <div class="23-hours-div label-box-24h">23</div>
+                        </div>
+
+                    </div>
+
+                    <button class="btn" id="add-location-btn">+ add location</button>
+    
+            </div>
+            <div id="saved-zones">
+    
+                <h3>Saved locations</h3>
+                <ul class="saved-zones-container">
+                    <li data-timezone="">
+                        <p class="saved-city-offset">
+                            <span class="saved-city">City </span>
+                            <span class="saved-offset"></span>
+                        </p>
+                        <p id="saved-time-period">
+                            <span class="saved-time">Time </span>
+                            <span class="saved-period"> </span>
+                        </p>
+                        <button class="removeBtn btn">x</button>
+                    </li>
+                </ul>
+            </div>
+    
+        </section>
+        <section id="time-converter">
+            <h3>Time Converter</h3>
+            <form action="" id="converter-form">
+                <div id="converter-time-from-zone-container">
+                    <label for="convertFromTimezone">From</label>
+                        <select class="input-converter" id="convertFromTimezone" >
+                            <option value="Timezone">Timezone</option>
+                        </select>
+                </div>
+                <div id="converter-date-time-container">
+                    <div id="converter-date-container">
+                        <label for="convertFromDate">Date</label>
+                        <input class="input-converter" id="convertFromDate" type="date" >
+                    </div>
+                    <div id="converter-date-container">
+                        <label for="convertFromTime">Time</label>
+                        <input class="input-converter" id="convertFromTime" type="time">
+                    </div>
+                </div>
+                <div id="converter-time-to-zone-container">
+                    <label for="convertToTimezone">To</label>
+                        <select class="input-converter" id="convertToTimezone" >
+                            <option value="Timezone">Timezone</option>
+                        </select>
+                </div>
+            </form>
+            <ul class="list" id="convertedList">
+                <li>
+                    <label for=""></label>
+                    <p id="convertedData">
+                        <span class='converted-date'>Date</span>
+                        <span class='converted-time'>Time</span>
+                        <span class="converted-timezone">Timezone</span>
+                    </p>
+                </li>
+            </ul>
+        </section>
+    </section>
+    
+
+    <footer>V. Gkagkavouzis <span id="footerDate"></span> &copy;</footer>
+ 
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+
+
+<!-- terminal: npm run dev     to run the project -->

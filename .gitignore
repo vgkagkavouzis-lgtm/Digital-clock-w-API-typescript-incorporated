@@ -1,0 +1,18 @@
+# Installed dependencies
+node_modules/
+
+# Generated build output
+dist/
+build/
+data/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# macOS files
+.DS_Store
