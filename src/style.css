@@ -62,7 +62,7 @@
 /* for laptop */
 @media (min-width: 861px) {
     :root {
-        --general-width: 32rem;
+        --general-width: 35rem;
     }
 
     body {
@@ -230,6 +230,7 @@ nav {
     align-items: center;
     flex-wrap: wrap;
     gap: 1.5rem;
+    margin: 1rem;
 }
 
 #header {
@@ -408,7 +409,8 @@ nav {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin: 1rem 0;
+    position: relative;
+    margin: 3rem 0;
 }
 
 .visual-box-24h {
@@ -428,13 +430,49 @@ nav {
 /* for mobile */
 @media (max-width: 590px) {
     .visual-23h-boxes-container {
-        gap: .1rem;
-        margin: 1rem 0;
+        gap: .05rem;
     }
 
     .visual-box-24h {
         width: .4rem;
         height: .4rem;
+    }
+    .visual-box-24h-small {
+        width: .5rem;
+        height: 1rem;
+    }
+    
+    .visual-box-24h-medium {
+        width: .5rem;
+        height: 1.3rem;
+    }
+    
+    .visual-box-24h-large {
+        width: .5rem;
+        height: 1.6rem;
+    }
+    
+    .visual-box-24h-middle {
+        width: .5rem;
+        height: 1.9rem;
+    }
+
+    .label-box-24h {
+    font-size: .6rem;
+    }
+
+    .now-marker {
+        position: absolute;
+        top: -2.1rem;
+        left: 9.8rem;
+        font-size: .8rem
+    }
+
+    .now-marker::after {
+        content: '▼';
+        position: absolute;
+        top: 1.2rem;
+        left: .6rem;
     }
 }
 
@@ -460,11 +498,25 @@ nav {
         height: 1.9rem;
     }
 
+    .label-box-24h {
+        font-size: .8rem;
+    }
+
+    .now-marker {
+        position: absolute;
+        top: -2.1rem;
+        left: 16.6rem;
+        font-size: .8rem
+    }
+
+    .now-marker::after {
+        content: '▼';
+        position: absolute;
+        top: 1.2rem;
+        left: .6rem;
+    }
 }
 
-.label-box-24h {
-    font-size: .8rem;
-}
 
 
 /* ========== Saved Zones ======== */
