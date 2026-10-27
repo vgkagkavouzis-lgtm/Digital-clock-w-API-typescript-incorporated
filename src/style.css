@@ -32,7 +32,7 @@
 
 
     --font-color: rgb(221, 223, 255);
-    --font-color-faded: rgb(81, 124, 230); 
+    --font-color-faded: rgb(123, 137, 175); 
 
     --location-btn-background: rgb(66,91,154);
 
@@ -415,7 +415,6 @@ nav {
 
 .visual-box-24h {
     margin: .15rem;
-    background-color: var(--yellow-color);
     border-radius: var(--border-radius-visual-boxes);
 }
 
@@ -425,6 +424,22 @@ nav {
     justify-items: center;
     align-items: center;
     row-gap: .4rem;
+}
+
+/* sleep hours divs */
+.hours-23-div .visual-box-24h, .hours-00-div .visual-box-24h, .hours-01-div .visual-box-24h, .hours-02-div .visual-box-24h, .hours-03-div .visual-box-24h, .hours-04-div .visual-box-24h, .hours-05-div .visual-box-24h, .hours-06-div .visual-box-24h{
+    background-color: var(--location-btn-background);
+}
+
+/* awake hours divs */
+.hours-07-div .visual-box-24h, .hours-08-div .visual-box-24h, .hours-18-div .visual-box-24h, .hours-19-div .visual-box-24h, .hours-20-div .visual-box-24h, .hours-21-div .visual-box-24h, .hours-22-div .visual-box-24h {
+    background-color: var(--faded-bg-color);
+    border: var(--border);
+}
+
+/* working hours */ 
+.hours-09-div .visual-box-24h, .hours-10-div .visual-box-24h, .hours-11-div .visual-box-24h, .hours-12-div .visual-box-24h, .hours-13-div .visual-box-24h, .hours-14-div .visual-box-24h, .hours-15-div .visual-box-24h, .hours-16-div .visual-box-24h, .hours-17-div .visual-box-24h{
+ background-color: var(--yellow-color);
 }
 
 /* for mobile */
@@ -526,7 +541,14 @@ nav {
     flex-direction: column;
 }
 
-.saved-zones-container li{
+.saved-zones-container li {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-saved-city-time-removeBtn{
     list-style: none;
     display: flex;
     flex-direction: row;

@@ -14,6 +14,7 @@ const timeZone = document.getElementById('time-zone');
 const time = document.getElementById('time'); // searched time
 const period =document.getElementById('period'); // searched period
 const offset = document.getElementById('offset');
+const mainDisplayVisual23hDiv = document.getElementById('main-display-visual-23h-boxes-container');
 const localZoneDisplay = document.getElementById('localZoneDisplay');
 const localTime = document.getElementById('localTime');
 const localPeriod = document.getElementById('localPeriod');
@@ -327,6 +328,8 @@ function renderSavedLocations(): void {
         
         savedLocations.forEach((loc) => {
             const li = document.createElement('li');
+            const div = document.createElement('div');
+            const div23visual = document.createElement('div');
             const p1 = document.createElement('p');
             const p2 = document.createElement('p');
             const span1 = document.createElement('span');
@@ -337,6 +340,8 @@ function renderSavedLocations(): void {
             const btnRemove = document.createElement('button');
             
             li.dataset.timezone = loc.timeZone;
+            div.classList.add('div-saved-city-time-removeBtn');
+            div23visual.classList.add('visual-23h-boxes-container');
             p1.classList.add('saved-city-offset');
             p2.classList.add('saved-time-period-btn')
             span1.classList.add('saved-city');
@@ -344,17 +349,22 @@ function renderSavedLocations(): void {
             // span2.classList.add('saved-timeZone');
             // span2.textContent = loc.timeZone;
             span3.classList.add('saved-time');
-            span3.textContent = dateFormatter(loc.timeZone).timeVl;
+            span3.textContent = dateFormatter(loc.timeZone, is12hour).timeVl;
             span4.classList.add('saved-period');
-            span4.textContent = dateFormatter(loc.timeZone).periodVl;
+            span4.textContent = dateFormatter(loc.timeZone, is12hour).periodVl;
             span5.classList.add('saved-offset');
-            span5.textContent = dateFormatter(loc.timeZone).offsetVl;
+            span5.textContent = dateFormatter(loc.timeZone, is12hour).offsetVl;
             
             btnRemove.classList.add('removeBtn', 'btn')
             btnRemove.textContent = 'x';
             
             savedLocationsUl.append(li);
-            li.append(p1, p2, btnRemove);
+            li.append(div, div23visual);
+
+            const divs: HTMLDivElement[] = DivBuilder23hVisual(loc.timeZone);
+            divs.forEach(div => div23visual.append(div));
+            
+            div.append(p1, p2, btnRemove);
             p1.append(span1, span5);
             p2.append(span3, span4);
         }
@@ -393,6 +403,13 @@ function updateText (inp: string): void {
             }
             //update the selectedZone variable
             selectedZone = result.timeZone; // assign to the result the selected zone
+
+            //Create the visual23hour divs
+            mainDisplayVisual23hDiv.replaceChildren();
+            const divs: HTMLDivElement[] = DivBuilder23hVisual(selectedZone);
+            divs.forEach(div => mainDisplayVisual23hDiv.append(div));
+
+
             //update the select
             if (selectZones instanceof HTMLSelectElement) {
                 selectZones.value = selectedZone;
@@ -414,14 +431,14 @@ type TimeDateFormatter = {
     offsetVl: string;
 }
 
-function dateFormatter (zone: string) {
+function dateFormatter (zone: string, hour12or24: boolean) {
     const now = new Date();
     
     const formatterZone = Intl.DateTimeFormat('en-US', {
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
-        hour12: is12hour,
+        hour12: hour12or24,
         hourCycle: 'h23',
         timeZone: zone,
         timeZoneName: 'shortOffset'
@@ -441,7 +458,7 @@ function dateFormatter (zone: string) {
 //selected time zone display
 function getTime (): void {
     clearTimeout(timeoutId);
-    const localFormatter: TimeDateFormatter = dateFormatter(localZone);
+    const localFormatter: TimeDateFormatter = dateFormatter(localZone, is12hour);
 
     //get the local time
     if (localZoneDisplay instanceof HTMLSpanElement) {
@@ -458,7 +475,7 @@ function getTime (): void {
     }
 
     if (selectedZone) {
-        const selectedZoneFormatter: TimeDateFormatter = dateFormatter(selectedZone);
+        const selectedZoneFormatter: TimeDateFormatter = dateFormatter(selectedZone, is12hour);
         //update the time
         if(time instanceof HTMLParagraphElement) {
             time.textContent = selectedZoneFormatter.timeVl;
@@ -485,7 +502,7 @@ function updateSavedTimes (): void {
     liItems.forEach(li => {
             const zone = li.dataset.timezone;
             if (!zone) return
-            const formatter: TimeDateFormatter = dateFormatter(zone);
+            const formatter: TimeDateFormatter = dateFormatter(zone, is12hour);
             const liTime = li.querySelector('.saved-time');
             const liPeriod = li.querySelector('.saved-period');
             const liOffset = li.querySelector('.saved-offset');
@@ -708,7 +725,124 @@ function convertTime (): void {
 }
 
 
+// ======== Visual 23hour div boxes =========
+type HoursType = 'Working hours' | 'Sleep hours' | 'Awake hours';
+let hoursType: HoursType;
 
+function checKifWorkingHours (zone: string): HoursType {
+    const hour24: number = Number(dateFormatter(zone, false).timeVl.split(':')[0]);
+    if (hour24 >= 9 && hour24 <= 17) {
+        hoursType = 'Working hours';
+    } else if (hour24 >= 7 && hour24 < 9 && hour24 >=18 && hour24 < 23) {
+        hoursType = 'Awake hours';
+    } else if (hour24 >= 23 && hour24 < 7) {
+        hoursType = 'Sleep hours';
+    }
+    return hoursType;
+}
+
+
+
+function DivBuilder23hVisual (zone: string): HTMLDivElement[] {
+    const hour24 = Number(dateFormatter(zone, false).timeVl.split(':')[0]);
+    
+    let startingHourDiv: number;
+    if (hour24 >= 11 && hour24 <= 23) {
+        startingHourDiv = hour24 -  11;
+    } else if (hour24 >= 0 && hour24 < 11) {
+        startingHourDiv = hour24 + 13;
+    } 
+    
+    const containerDiv = document.createElement('div');
+    containerDiv.classList.add('visual-23h-boxes-container');
+    const divs: HTMLDivElement[] = [];
+    
+    let n: number; // the increasing text-output for the labels. Ex.'00, 01'
+    let wentOver23: boolean = false; //if. n > 23 change n to 0
+    for (let i: number = 0; i <= 23; i++) {
+        if (startingHourDiv >= 0 && startingHourDiv < 12) {
+            if (i === 12) {
+                const now: HTMLDivElement = document.createElement('div');
+                now.classList.add('now-marker');
+                now.textContent = 'Now';
+                divs.push(now);
+
+                const update = parentBoxAndLabelBuilder(startingHourDiv, n, i, wentOver23);
+                n = update.n;
+                wentOver23 = update.wentOver23;
+                divs.push(update.parentDiv);
+            
+            } else {
+                const update = parentBoxAndLabelBuilder(startingHourDiv, n, i, wentOver23);
+                n = update.n;
+                wentOver23 = update.wentOver23;
+                divs.push(update.parentDiv);
+            }
+        } else if (startingHourDiv >= 12 && startingHourDiv < 24) {
+            if (i === 12) {
+                const now: HTMLDivElement = document.createElement('div');
+                now.classList.add('now-marker');
+                now.textContent = 'Now';
+                divs.push(now);
+
+                const update = parentBoxAndLabelBuilder(startingHourDiv, n, i, wentOver23);
+                n = update.n;
+                wentOver23 = update.wentOver23;
+                divs.push(update.parentDiv);
+            
+            } else {
+                const update = parentBoxAndLabelBuilder(startingHourDiv, n, i, wentOver23);
+                n = update.n;
+                wentOver23 = update.wentOver23;
+                divs.push(update.parentDiv);
+        }
+        }
+    }
+    return divs;
+}
+
+function parentBoxAndLabelBuilder (startingHourDiv: number, 
+                                n: number, 
+                                i: number, 
+                                wentOver23: boolean): 
+                                {wentOver23: boolean, n: number, parentDiv: HTMLDivElement} {
+        const parentDiv: HTMLDivElement = document.createElement('div');
+        const id: number | string= startingHourDiv >= 10 ? Number(startingHourDiv) : String(startingHourDiv).padStart(2, '0');
+        
+        if (wentOver23 === false) {
+            n = Number(id) + i;
+        } 
+        
+        const boxClassId: string = n < 10 ? `hours-0${n}-div` : `hours-${n}-div`;
+        parentDiv.classList.add('hour-div-plus-label-div', `${boxClassId}`)
+        
+        const boxDiv: HTMLDivElement = document.createElement('div');
+        if((i >= 0 && i < 5) || (i >= 19 && i < 24)) {
+            boxDiv.classList.add('visual-box-24h', 'visual-box-24h-small');
+        } else if ((i >= 5 && i < 9) || (i >= 15 && i < 19)) {
+            boxDiv.classList.add('visual-box-24h', 'visual-box-24h-medium');
+        } else if (i === 9 || i === 10 || i === 13 || i === 14) {
+            boxDiv.classList.add('visual-box-24h', 'visual-box-24h-large');
+        } else if (i === 12 || i === 11) {
+            boxDiv.classList.add('visual-box-24h', 'visual-box-24h-middle');
+        }
+
+        const labelDiv: HTMLDivElement = document.createElement('div');
+        labelDiv.classList.add('label-box-24h');
+
+
+        labelDiv.textContent = String(n).padStart(2, '0');
+        if (n >= 23) {
+            n = 0,
+            wentOver23 = true;
+        } else {
+            n++;
+        }
+
+        parentDiv.append(boxDiv, labelDiv);
+
+        return {wentOver23, n, parentDiv};
+}
 
 
 
@@ -719,15 +853,6 @@ const footerYear: number =  new Date().getFullYear();
 if (footerDate) {
     footerDate.textContent = `${footerYear}`;
 }
-
-
-
-
-
-
-
-
-
 
 
 
