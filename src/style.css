@@ -41,11 +41,61 @@
     --yellow-color: #EAC452;
 }
 
+/* ======= responsiveness ========*/
+
 /* for mobile */
 @media (max-width: 590px) {
     :root {
         --general-width: 21.5rem;
     }
+
+    /* ====== Visual 23h colored boxes ===== */
+        .visual-23h-boxes-container {
+        gap: .05rem;
+    }
+
+    .visual-box-24h {
+        width: .4rem;
+        height: .4rem;
+    }
+    .visual-box-24h-small {
+        width: .5rem;
+        height: 1rem;
+    }
+    
+    .visual-box-24h-medium {
+        width: .5rem;
+        height: 1.3rem;
+    }
+    
+    .visual-box-24h-large {
+        width: .5rem;
+        height: 1.6rem;
+    }
+    
+    .visual-box-24h-middle {
+        width: .5rem;
+        height: 1.9rem;
+    }
+
+    .label-box-24h {
+    font-size: .6rem;
+    }
+
+    .now-marker {
+        position: absolute;
+        top: -2.1rem;
+        left: 9.8rem;
+        font-size: .8rem
+    }
+
+    .now-marker::after {
+        content: '▼';
+        position: absolute;
+        top: 1.2rem;
+        left: .6rem;
+    }
+
 }
 
 /* for tablet */
@@ -57,6 +107,38 @@
     body {
         max-width: 38rem;
     }
+
+    /* ====== Visual 23h colored boxes ===== */
+
+    .visual-box-24h-small {
+        width: 1rem;
+        height: 1rem;
+    }
+    
+    .visual-box-24h-medium {
+        width: 1rem;
+        height: 1.3rem;
+    }
+    
+    .visual-box-24h-large {
+        width: 1rem;
+        height: 1.6rem;
+    }
+    
+    .visual-box-24h-middle {
+        width: 1rem;
+        height: 1.9rem;
+    }
+
+    .label-box-24h {
+        font-size: .8rem;
+    }
+
+    /* ======= time converter =======*/
+    #main-select-input, #time-converter {
+        width: var(--general-width);
+    }
+
 }
 
 /* for laptop */
@@ -67,6 +149,31 @@
 
     body {
     width: 60rem;
+    }
+
+     /* ====== Visual 23h colored boxes ===== */
+    .visual-box-24h-small {
+        width: 1rem;
+        height: 1rem;
+    }
+    
+    .visual-box-24h-medium {
+        width: 1rem;
+        height: 1.3rem;
+    }
+    
+    .visual-box-24h-large {
+        width: 1rem;
+        height: 1.6rem;
+    }
+    
+    .visual-box-24h-middle {
+        width: 1rem;
+        height: 1.9rem;
+    }
+
+    .label-box-24h {
+        font-size: .8rem;
     }
 }
 
@@ -345,6 +452,7 @@ nav {
 /* ======== Time Display ========= */
 
 #displays {
+    position:relative;
     display: flex;
     flex-direction: column;
     height: auto;
@@ -402,8 +510,8 @@ nav {
     gap: .5rem;
 }
 
-/* ====== Visual 24h colored boxes ===== */
-
+/* ====== Visual 23h colored boxes ===== */
+/* for main display */
 .visual-23h-boxes-container {
     display: flex;
     flex-direction: row;
@@ -442,103 +550,36 @@ nav {
  background-color: var(--yellow-color);
 }
 
-/* for mobile */
-@media (max-width: 590px) {
-    .visual-23h-boxes-container {
-        gap: .05rem;
-    }
-
-    .visual-box-24h {
-        width: .4rem;
-        height: .4rem;
-    }
-    .visual-box-24h-small {
-        width: .5rem;
-        height: 1rem;
-    }
-    
-    .visual-box-24h-medium {
-        width: .5rem;
-        height: 1.3rem;
-    }
-    
-    .visual-box-24h-large {
-        width: .5rem;
-        height: 1.6rem;
-    }
-    
-    .visual-box-24h-middle {
-        width: .5rem;
-        height: 1.9rem;
-    }
-
-    .label-box-24h {
-    font-size: .6rem;
-    }
-
-    .now-marker {
-        position: absolute;
-        top: -2.1rem;
-        left: 9.8rem;
-        font-size: .8rem
-    }
-
-    .now-marker::after {
-        content: '▼';
-        position: absolute;
-        top: 1.2rem;
-        left: .6rem;
-    }
+.now-marker {
+    position: absolute;
+    font-size: .8rem
 }
 
-/* for tablet and laptop */
-@media (min-width: 590px) {
-    .visual-box-24h-small {
-        width: 1rem;
-        height: 1rem;
-    }
-    
-    .visual-box-24h-medium {
-        width: 1rem;
-        height: 1.3rem;
-    }
-    
-    .visual-box-24h-large {
-        width: 1rem;
-        height: 1.6rem;
-    }
-    
-    .visual-box-24h-middle {
-        width: 1rem;
-        height: 1.9rem;
-    }
-
-    .label-box-24h {
-        font-size: .8rem;
-    }
-
-    .now-marker {
-        position: absolute;
-        top: -2.1rem;
-        left: 16.6rem;
-        font-size: .8rem
-    }
-
-    .now-marker::after {
-        content: '▼';
-        position: absolute;
-        top: 1.2rem;
-        left: .6rem;
-    }
+.now-marker::after {
+    content: '▼';
+    position: absolute;
 }
 
+.now-main-display {
+    top: -2.5rem;
+    left: 16.6rem;
+}
 
+.now-main-display::after {
+    top: 1.2rem;
+    left: .6rem;
+}
 
 /* ========== Saved Zones ======== */
 
 #saved-zones {
     display: flex;
     flex-direction: column;
+}
+
+.saved-zones-container {
+    margin: 0;
+    padding: 0;
 }
 
 .saved-zones-container li {
@@ -554,16 +595,10 @@ nav {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    position: relative;
     margin: 1rem 0;
     border-bottom: var(--border);
-    padding-bottom: 1rem;
+    padding: 0 1rem 1rem 1rem;
     width: var(--general-width);
-}
-
-.saved-zones-container {
-    margin: 0;
-    padding: 0;
 }
 
 .saved-city-offset {
@@ -571,28 +606,61 @@ nav {
     flex-direction: column;
 }
 
+.saved-time-period {
+    /* position: relative; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    left: 6.5rem;
+    width: 6rem;
+
+}
+
 .saved-time {
-    position: absolute;
-    left: 9rem;
-    height: 50%;
-    transform: translateY(-55%);
+    /* position: absolute; */
+    left: -2.3rem;
+    top: -.8rem;
+    /* height: 50%;
+    transform: translateY(-55%); */
 }
 
 .saved-period {
     font-size: .6rem;
-    position: absolute;
-    left: 14.3rem;
+    /* position: absolute; */
+    left: 2.4rem;
 }
 
 .removeBtn {
+    left: 32rem;
     padding: .3rem .6rem;
     color: var(--font-color);
 }
 
+/* visual23h for saved zones */
+.visual-23h-boxes-container-saved-zones {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem 0;
+    position: relative;
+}
 
+.saved-zones-23hVisual{
+    width: .2rem;
 
+}
 
+.now-saved-zones{
+    top: -2.5rem;
+    left: 9rem;
+}
 
+.now-saved-zones::after{
+    top: 1.2rem;
+    left: .6rem;
+}
 
 
 /* ======== Time Converter ======= */
@@ -613,11 +681,6 @@ nav {
     max-width: var(--general-width);
 }
 
-@media (min-width: 590px) and (max-width: 860px) {
-    #main-select-input, #time-converter {
-        width: var(--general-width);
-    }
-}
 
 #converter-form, #converter-date-container, #converter-date-container, #converter-time-from-zone-container, #converter-time-to-zone-container {
     display: flex;

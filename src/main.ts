@@ -341,9 +341,9 @@ function renderSavedLocations(): void {
             
             li.dataset.timezone = loc.timeZone;
             div.classList.add('div-saved-city-time-removeBtn');
-            div23visual.classList.add('visual-23h-boxes-container');
+            div23visual.classList.add('visual-23h-boxes-container-saved-zones');
             p1.classList.add('saved-city-offset');
-            p2.classList.add('saved-time-period-btn')
+            p2.classList.add('saved-time-period')
             span1.classList.add('saved-city');
             span1.textContent = `${loc.cities[0]} `;
             // span2.classList.add('saved-timeZone');
@@ -359,12 +359,12 @@ function renderSavedLocations(): void {
             btnRemove.textContent = 'x';
             
             savedLocationsUl.append(li);
-            li.append(div, div23visual);
+            li.append(div);
 
-            const divs: HTMLDivElement[] = DivBuilder23hVisual(loc.timeZone);
+            const divs: HTMLDivElement[] = DivBuilder23hVisual(loc.timeZone, 'Saved Zones');
             divs.forEach(div => div23visual.append(div));
             
-            div.append(p1, p2, btnRemove);
+            div.append(p1, p2, div23visual, btnRemove);
             p1.append(span1, span5);
             p2.append(span3, span4);
         }
@@ -406,7 +406,7 @@ function updateText (inp: string): void {
 
             //Create the visual23hour divs
             mainDisplayVisual23hDiv.replaceChildren();
-            const divs: HTMLDivElement[] = DivBuilder23hVisual(selectedZone);
+            const divs: HTMLDivElement[] = DivBuilder23hVisual(selectedZone, 'Main Display');
             divs.forEach(div => mainDisplayVisual23hDiv.append(div));
 
 
@@ -741,9 +741,9 @@ function checKifWorkingHours (zone: string): HoursType {
     return hoursType;
 }
 
+type Destination = 'Main Display' | 'Saved Zones';
 
-
-function DivBuilder23hVisual (zone: string): HTMLDivElement[] {
+function DivBuilder23hVisual (zone: string, destination: Destination): HTMLDivElement[] {
     const hour24 = Number(dateFormatter(zone, false).timeVl.split(':')[0]);
     
     let startingHourDiv: number;
@@ -765,15 +765,20 @@ function DivBuilder23hVisual (zone: string): HTMLDivElement[] {
                 const now: HTMLDivElement = document.createElement('div');
                 now.classList.add('now-marker');
                 now.textContent = 'Now';
+                if (destination === 'Saved Zones') {
+                now.classList.add('now-saved-zones');
+                }  else {
+                now.classList.add('now-main-display');
+                }
                 divs.push(now);
 
-                const update = parentBoxAndLabelBuilder(startingHourDiv, n, i, wentOver23);
+                const update = parentBoxAndLabelBuilder(startingHourDiv, n, i, wentOver23, destination);
                 n = update.n;
                 wentOver23 = update.wentOver23;
                 divs.push(update.parentDiv);
             
             } else {
-                const update = parentBoxAndLabelBuilder(startingHourDiv, n, i, wentOver23);
+                const update = parentBoxAndLabelBuilder(startingHourDiv, n, i, wentOver23, destination);
                 n = update.n;
                 wentOver23 = update.wentOver23;
                 divs.push(update.parentDiv);
@@ -782,16 +787,21 @@ function DivBuilder23hVisual (zone: string): HTMLDivElement[] {
             if (i === 12) {
                 const now: HTMLDivElement = document.createElement('div');
                 now.classList.add('now-marker');
+                if (destination === 'Saved Zones') {
+                    now.classList.add('now-saved-zones')
+                } else {
+                now.classList.add('now-main-display');
+                }
                 now.textContent = 'Now';
                 divs.push(now);
 
-                const update = parentBoxAndLabelBuilder(startingHourDiv, n, i, wentOver23);
+                const update = parentBoxAndLabelBuilder(startingHourDiv, n, i, wentOver23, destination);
                 n = update.n;
                 wentOver23 = update.wentOver23;
                 divs.push(update.parentDiv);
             
             } else {
-                const update = parentBoxAndLabelBuilder(startingHourDiv, n, i, wentOver23);
+                const update = parentBoxAndLabelBuilder(startingHourDiv, n, i, wentOver23, destination);
                 n = update.n;
                 wentOver23 = update.wentOver23;
                 divs.push(update.parentDiv);
@@ -804,7 +814,8 @@ function DivBuilder23hVisual (zone: string): HTMLDivElement[] {
 function parentBoxAndLabelBuilder (startingHourDiv: number, 
                                 n: number, 
                                 i: number, 
-                                wentOver23: boolean): 
+                                wentOver23: boolean, 
+                                destination: Destination): 
                                 {wentOver23: boolean, n: number, parentDiv: HTMLDivElement} {
         const parentDiv: HTMLDivElement = document.createElement('div');
         const id: number | string= startingHourDiv >= 10 ? Number(startingHourDiv) : String(startingHourDiv).padStart(2, '0');
@@ -818,13 +829,30 @@ function parentBoxAndLabelBuilder (startingHourDiv: number,
         
         const boxDiv: HTMLDivElement = document.createElement('div');
         if((i >= 0 && i < 5) || (i >= 19 && i < 24)) {
-            boxDiv.classList.add('visual-box-24h', 'visual-box-24h-small');
+            if (destination === 'Main Display') {
+                boxDiv.classList.add('visual-box-24h', 'visual-box-24h-small');
+            } else {
+                 boxDiv.classList.add('visual-box-24h', 'visual-box-24h-small', 'saved-zones-23hVisual')        
+            }
         } else if ((i >= 5 && i < 9) || (i >= 15 && i < 19)) {
-            boxDiv.classList.add('visual-box-24h', 'visual-box-24h-medium');
+            if (destination === 'Main Display') {
+                boxDiv.classList.add('visual-box-24h', 'visual-box-24h-medium');
+            } else {
+                boxDiv.classList.add('visual-box-24h', 'visual-box-24h-medium', 'saved-zones-23hVisual');
+            }
         } else if (i === 9 || i === 10 || i === 13 || i === 14) {
-            boxDiv.classList.add('visual-box-24h', 'visual-box-24h-large');
+            if (destination === 'Main Display') {
+                boxDiv.classList.add('visual-box-24h', 'visual-box-24h-large');
+            } else {
+                boxDiv.classList.add('visual-box-24h', 'visual-box-24h-large', 'saved-zones-23hVisual');
+            }
         } else if (i === 12 || i === 11) {
-            boxDiv.classList.add('visual-box-24h', 'visual-box-24h-middle');
+            if (destination === 'Main Display') {
+                boxDiv.classList.add('visual-box-24h', 'visual-box-24h-middle');
+            } else {
+                boxDiv.classList.add('visual-box-24h', 'visual-box-24h-middle', 'saved-zones-23hVisual');
+
+            }
         }
 
         const labelDiv: HTMLDivElement = document.createElement('div');
