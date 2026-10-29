@@ -735,7 +735,7 @@ function checKifWorkingHours (zone: string): HoursType {
         hoursType = 'Working hours';
     } else if (hour24 >= 7 && hour24 < 9 && hour24 >=18 && hour24 < 23) {
         hoursType = 'Awake hours';
-    } else if (hour24 >= 23 && hour24 < 7) {
+    } else if (hour24 === 23 || hour24 < 7) {
         hoursType = 'Sleep hours';
     }
     return hoursType;
@@ -765,10 +765,10 @@ function DivBuilder23hVisual (zone: string, destination: Destination): HTMLDivEl
                 const now: HTMLDivElement = document.createElement('div');
                 now.classList.add('now-marker');
                 now.textContent = 'Now';
-                if (destination === 'Saved Zones') {
-                now.classList.add('now-saved-zones');
-                }  else {
-                now.classList.add('now-main-display');
+                if (destination === 'Main Display') {
+                    now.classList.add('now-main-display');
+                } else {
+                    now.classList.add('now-saved-zones');
                 }
                 divs.push(now);
 
@@ -787,10 +787,10 @@ function DivBuilder23hVisual (zone: string, destination: Destination): HTMLDivEl
             if (i === 12) {
                 const now: HTMLDivElement = document.createElement('div');
                 now.classList.add('now-marker');
-                if (destination === 'Saved Zones') {
-                    now.classList.add('now-saved-zones')
+                if (destination === 'Main Display') {
+                    now.classList.add('now-main-display');
                 } else {
-                now.classList.add('now-main-display');
+                    now.classList.add('now-saved-zones');
                 }
                 now.textContent = 'Now';
                 divs.push(now);
@@ -838,13 +838,13 @@ function parentBoxAndLabelBuilder (startingHourDiv: number,
             if (destination === 'Main Display') {
                 boxDiv.classList.add('visual-box-24h', 'visual-box-24h-medium');
             } else {
-                boxDiv.classList.add('visual-box-24h', 'visual-box-24h-medium', 'saved-zones-23hVisual');
+                boxDiv.classList.add('visual-box-24h', 'visual-box-24h-small', 'saved-zones-23hVisual');
             }
         } else if (i === 9 || i === 10 || i === 13 || i === 14) {
             if (destination === 'Main Display') {
                 boxDiv.classList.add('visual-box-24h', 'visual-box-24h-large');
             } else {
-                boxDiv.classList.add('visual-box-24h', 'visual-box-24h-large', 'saved-zones-23hVisual');
+                boxDiv.classList.add('visual-box-24h', 'visual-box-24h-small', 'saved-zones-23hVisual');
             }
         } else if (i === 12 || i === 11) {
             if (destination === 'Main Display') {
@@ -858,8 +858,9 @@ function parentBoxAndLabelBuilder (startingHourDiv: number,
         const labelDiv: HTMLDivElement = document.createElement('div');
         labelDiv.classList.add('label-box-24h');
 
-
-        labelDiv.textContent = String(n).padStart(2, '0');
+        if (destination === 'Main Display') {
+            labelDiv.textContent = String(n).padStart(2, '0');
+        }
         if (n >= 23) {
             n = 0,
             wentOver23 = true;

@@ -607,28 +607,29 @@ nav {
 }
 
 .saved-time-period {
-    /* position: relative; */
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    left: 6.5rem;
-    width: 6rem;
+    /* left: 6.5rem;
+    width: 6rem; */
 
 }
 
 .saved-time {
-    /* position: absolute; */
+    position: absolute;
     left: -2.3rem;
     top: -.8rem;
-    /* height: 50%;
-    transform: translateY(-55%); */
+    height: 50%;
+    transform: translateY(-55%);
 }
 
 .saved-period {
     font-size: .6rem;
-    /* position: absolute; */
-    left: 2.4rem;
+    position: absolute;
+    top: 0rem;
+    left: 2.9rem;
 }
 
 .removeBtn {
@@ -653,11 +654,13 @@ nav {
 }
 
 .now-saved-zones{
+    display: none;
     top: -2.5rem;
-    left: 9rem;
+    left: 10.2rem;
 }
 
 .now-saved-zones::after{
+    display: none;
     top: 1.2rem;
     left: .6rem;
 }
@@ -719,70 +722,4 @@ nav {
 .converted-date {
     font-size: 1.2rem;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ======Meeting Planner ====== */
-/* #div-meeting-add-city, #div-meeting-add-date, #div-meeting-add-length {
-    display: flex;
-    flex-direction: column;
-}
-
-#div-meeting-add-city {
-    width: 19rem;
-}
-
-#meeting-planner {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    min-width: var(--general-width);
-    max-width: 65rem;
-    border: var(--border);
-    border-radius: var(--border-radius);
-    padding: 1rem;
-    background-color: var(--whiter-bg-color);
-}
-
-@media (max-width:670px) {
-    #meeting-planner {
-        width: var(--general-width);
-    }
-}
-
-#div-add-date-add-length {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 3.2rem;
-    width: 18rem;
-}
-
-#meeting-add-length {
-    width: 6rem;
-} */
 
