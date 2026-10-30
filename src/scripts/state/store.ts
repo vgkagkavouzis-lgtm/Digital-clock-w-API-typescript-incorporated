@@ -5,7 +5,8 @@
 import type { FilterApi } from '../types/zones';
 
 let selectedZone: string | undefined; // the zone shown in the main display
-let is12hour = true; // 12h or 24h format
+let is12hour: boolean = true; // 12h or 24h format
+let isNightMode: boolean = false; // Start with day mode
 let filteredData: FilterApi[] | undefined; // API data, trimmed (undefined until loaded)
 let countriesAndCities: string[] = []; // flat list of names for autocomplete
 
@@ -21,6 +22,14 @@ export function getIs12hour(): boolean {
 }
 export function setIs12hour(value: boolean): void {
     is12hour = value;
+}
+
+export function getIsNightMode (): boolean {
+    return isNightMode;
+}
+
+export function setIsNightMode (value: boolean): void {
+    isNightMode = value;
 }
 
 export function getFilteredData(): FilterApi[] | undefined {

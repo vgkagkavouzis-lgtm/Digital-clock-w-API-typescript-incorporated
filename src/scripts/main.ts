@@ -11,11 +11,12 @@ import {
 } from './features/saved-locations/saved-locations';
 import { initAutocomplete } from './features/search/autocomplete';
 import { initSearch } from './features/search/search';
-import { initThemeToggles, load12hour } from './ui/theme-toggle';
+import { initThemeToggles, load12hour, loadNightMode } from './ui/theme-toggle';
 
 // 1. Restore what the user saved last time (must run before the first render)
 loadLocations();
 load12hour();
+loadNightMode();
 
 // 2. First render + start the 1-second clock loop
 renderSavedLocations();
