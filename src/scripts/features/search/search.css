@@ -1,0 +1,46 @@
+.input {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+#main-input-form, #main-select-input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* right side */
+#main-select-input {
+    min-width: 21.5rem;
+    max-width: var(--general-width);
+}
+
+/* .highlight is added/removed by autocomplete.ts (keyboard + mouse) */
+.highlight { background-color: var(--location-btn-background); }
+.highlight:hover { color: white; }
+
+.suggestions-box {
+    position: absolute;
+    border-radius: var(--border-radius);
+    top: 4.5rem;
+    background-color: var(--whiter-bg-color);
+    width: var(--general-width);
+    max-height: 25rem;
+    overflow-y: auto;
+    z-index: 2;
+}
+
+.suggestions {
+    padding: .4rem;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/* for tablet */
+@media (min-width: 590px) and (max-width: 860px) {
+    #main-select-input { width: var(--general-width); }
+}

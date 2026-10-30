@@ -1,0 +1,24 @@
+#header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 1rem;
+}
+
+#title-info {
+    display: flex;
+    flex-direction: column;
+    /* gap: rem;   <- invalid (no number), browsers ignore it. Pick a value. */
+}
+
+#local-time {
+    display: flex;
+    flex-direction: column;
+}
+
+#localTime {
+    font-size: 1.2rem;
+}

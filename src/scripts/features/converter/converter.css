@@ -1,0 +1,34 @@
+#time-converter {
+    display: flex;
+    flex-direction: column;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    background-color: var(--whiter-bg-color);
+    height: 28rem;
+}
+
+/* right side */
+#time-converter { min-width: 21.5rem; max-width: var(--general-width); }
+
+#converter-form, #converter-date-container, #converter-time-from-zone-container, #converter-time-to-zone-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#converter-form { margin-bottom: .5rem; gap: .5rem; }
+
+#converter-date-time-container { display: flex; flex-direction: row; gap: 3.2rem; }
+
+#convertedList { list-style: none; border-top: var(--border); padding: 1rem 0; }
+
+#convertedData { display: flex; flex-direction: column; }
+
+.converted-time { font-size: 2.7rem; }
+.converted-date { font-size: 1.2rem; }
+.converted-date, .converted-time, .converted-timezone { color: var(--font-color); }
+
+/* for tablet */
+@media (min-width: 590px) and (max-width: 860px) {
+    #time-converter { width: var(--general-width); }
+}

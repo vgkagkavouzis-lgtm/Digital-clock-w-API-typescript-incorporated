@@ -1,0 +1,21 @@
+.local-time,
+.displays,
+.assistant-display {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    border: var(--border);
+    border-radius: var(--border-radius);
+    width: var(--general-width);
+}
+
+.local-time,
+.displays {
+    padding: 1rem;
+}
+
+.assistant-display p {
+    color: #DB3A78;
+    font-size: 2rem;
+    margin: .2rem 1rem;
+}

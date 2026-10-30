@@ -1,0 +1,21 @@
+:root {
+    --border-radius: .4rem;
+    --border-radius-visual-boxes: .2rem;
+
+    --general-width: 36rem;
+}
+
+/* for mobile */
+@media (max-width: 590px) {
+    :root { --general-width: 21.5rem; }
+}
+
+/* for tablet */
+@media (min-width: 590px) and (max-width: 860px) {
+    :root { --general-width: 35rem; }
+}
+
+/* for laptop */
+@media (min-width: 861px) {
+    :root { --general-width: 35rem; }
+}

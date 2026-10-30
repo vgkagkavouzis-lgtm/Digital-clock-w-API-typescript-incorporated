@@ -1,0 +1,56 @@
+#displays {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: var(--general-width);
+    margin: 2rem 0;
+    padding-bottom: 1rem;
+    border-bottom: var(--border);
+}
+
+#add-location-btn {
+    width: 10rem;
+    background-color: transparent;
+    margin: 1rem 0;
+    background-color: var(--location-btn-background);
+    color: white;
+}
+
+#period-offset { display: flex; flex-direction: column; }
+
+#time { font-size: 4rem; width: 13rem; }
+
+#period { position: absolute; top: 3.6rem; left: 17rem; }
+
+#timeP {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
+    position: relative;
+    width: var(--general-width);
+}
+
+#timezone-offset { display: flex; flex-direction: row; gap: .5rem; }
+
+/* text colors: day, then night */
+#time, #period, #time-zone, #offset { color: var(--font-color); }
+
+.dark-mode #time,
+.dark-mode #period,
+.dark-mode #timezone-offset,
+.dark-mode #city,
+.dark-mode #country {
+    color: var(--yellow-color);
+}
+
+/* "Now" marker, main display version */
+.now-main-display { top: -2.5rem; left: 16.6rem; }
+.now-main-display::after { top: 1.2rem; left: .6rem; }
+
+/* for mobile: the "Now" marker sits above the 12th hour box */
+@media (max-width: 590px) {
+    .now-main-display { top: -2.1rem; left: 9.8rem; }
+    .now-main-display::after { top: 1.2rem; left: .6rem; }
+}

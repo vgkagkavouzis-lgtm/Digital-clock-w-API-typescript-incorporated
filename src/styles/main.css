@@ -1,0 +1,27 @@
+/* VARIABLES: only CSS variables, never rules */
+@import './variables/theme-light.css';
+@import './variables/theme-dark.css';
+@import './variables/sizing.css';
+
+/* BASE: plain HTML elements (body, button, p), no classes or ids */
+@import './base/reset.css';
+@import './base/page.css';
+@import './base/typography.css';
+@import './base/forms.css';
+
+/* LAYOUT: page skeleton */
+@import './layout/nav.css';
+@import './layout/header.css';
+@import './layout/middle-section.css';
+
+/* COMPONENTS: one file per UI piece.
+   ORDER MATTERS: visual-hours.css must stay before clock.css and
+   saved-locations.css: those two override the shared hour boxes. */
+@import './components/theme-toggle.css';
+@import './components/assistant-display.css';
+@import '../scripts/features/search/search.css';
+@import './components/hours-legend.css';
+@import '../scripts/features/visual-hours/visual-hours.css';
+@import '../scripts/features/clock/clock.css';
+@import '../scripts/features/saved-locations/saved-locations.css';
+@import '../scripts/features/converter/converter.css';

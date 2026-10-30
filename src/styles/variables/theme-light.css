@@ -1,0 +1,14 @@
+:root {
+    --border: .09rem solid rgb(187, 187, 187);
+
+    /* colors Day-mode */
+    --font-color: rgb(0, 0, 0);
+    --font-color-faded: rgb(115, 115, 115);
+    --font-color-more-faded: rgb(155, 155, 155); /* not used anywhere yet */
+
+    --location-btn-background: rgb(66,91,154);
+
+    --faded-bg-color: rgb(228, 226, 252);
+    --whiter-bg-color: rgb(241, 242, 255);
+    --yellow-color: #EAC452;
+}

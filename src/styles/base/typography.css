@@ -1,0 +1,14 @@
+label, p {
+    color: var(--font-color-faded);
+}
+
+h1 { font-size: 2rem; }
+h3 { font-size: 1.2rem; }
+
+p, label { font-size: 0.9rem; }
+
+label { line-height: 2rem; }
+
+h1, h3, h5, h6, p {
+    margin: 0;
+}

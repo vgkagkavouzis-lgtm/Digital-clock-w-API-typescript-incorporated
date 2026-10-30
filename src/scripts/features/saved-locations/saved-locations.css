@@ -1,0 +1,66 @@
+#saved-zones { display: flex; flex-direction: column; }
+
+.saved-zones-container { margin: 0; padding: 0; }
+
+.saved-zones-container li {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.div-saved-city-time-removeBtn {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin: 1rem 0;
+    border-bottom: var(--border);
+    padding: 0 1rem 1rem 1rem;
+    width: var(--general-width);
+}
+
+.saved-city-offset { display: flex; flex-direction: column; }
+
+.saved-time-period {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* left: 6.5rem;
+    width: 6rem; */
+}
+
+.saved-time {
+    position: absolute;
+    left: -2.3rem;
+    top: -.8rem;
+    height: 50%;
+    transform: translateY(-55%);
+    font-size: 1.2rem;
+}
+
+.saved-period { font-size: .6rem; position: absolute; top: 0rem; left: 2.9rem; }
+
+/* `left` has no effect: the button is not positioned (no position: ...) */
+.removeBtn { left: 32rem; padding: .3rem .6rem; color: var(--font-color); }
+
+.saved-city, .saved-offset, .saved-time, .saved-period { color: var(--font-color); }
+
+/* compact 24h strip (overrides visual-hours.css) */
+.visual-23h-boxes-container-saved-zones {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem 0;
+    position: relative;
+}
+
+.saved-zones-23hVisual { width: .2rem; }
+
+/* the "Now" marker is hidden in saved rows */
+.now-saved-zones { display: none; top: -2.5rem; left: 10.2rem; }
+.now-saved-zones::after { display: none; top: 1.2rem; left: .6rem; }

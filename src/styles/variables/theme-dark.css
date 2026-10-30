@@ -1,0 +1,12 @@
+:root.dark-mode {
+    --border: .09rem solid rgb(66,91,154);
+
+    --font-color: rgb(221, 223, 255);
+    --font-color-faded: rgb(123, 137, 175);
+
+    --location-btn-background: rgb(66,91,154);
+
+    --faded-bg-color: rgb(18, 16, 36);
+    --whiter-bg-color: rgb(28, 30, 59);
+    --yellow-color: #EAC452;
+}
