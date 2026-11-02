@@ -1,8 +1,10 @@
 // Suggestion list under the search field: typing, arrow keys, mouse hover, click.
 
 import { getCountriesAndCities } from '../../state/store';
-import { output, searchInput as searchInputEl, suggestionsBox as suggestionsBoxEl } from '../../dom/elements';
+import { mainAssistantDisplay, secondaryAssistantDisplay, searchInput as searchInputEl, suggestionsBox as suggestionsBoxEl } from '../../dom/elements';
 import { updateText } from './search';
+import { displayMessageColor } from '../../ui/assistant-messages';
+import { checkInputIfOnlyLetters } from './regex';
 
 // Private to this file: which suggestion is highlighted (-1 = none).
 let eventIndex = -1;
@@ -24,16 +26,20 @@ export function initAutocomplete(): void {
 
         const countriesAndCities = getCountriesAndCities();
         if (countriesAndCities.length === 0) {
-            if (output) output.textContent = 'No locations available yet.';
+            displayMessageColor(secondaryAssistantDisplay, 'No data loaded yet', 'warning')
             return;
         }
-
+        
+        checkInputIfOnlyLetters(searchTerm);
+        
         countriesAndCities.forEach((item) => {
             if (item.toLowerCase().includes(searchTerm)) {
                 const div = document.createElement('div');
                 div.classList.add('suggestions');
                 div.textContent = item;
                 suggestionsBox.appendChild(div);
+
+
 
                 div.addEventListener('click', () => {
                     searchInput.value = item;

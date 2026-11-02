@@ -2,9 +2,10 @@
 
 import type { FilterApi } from '../../types/zones';
 import { getFilteredData, getIs12hour, getSelectedZone } from '../../state/store';
-import { addLocationBtn, output, savedLocationsUl } from '../../dom/elements';
+import { addLocationBtn, mainAssistantDisplay, secondaryAssistantDisplay, savedLocationsUl } from '../../dom/elements';
 import { dateFormatter } from '../clock/time-formatter';
 import { DivBuilder23hVisual } from '../visual-hours/visual-builder';
+import { displayMessageColor } from '../../ui/assistant-messages';
 
 // Private to this file: no other module reads the saved array.
 // (clock.ts updates the times by reading the <li> elements, not this array.)
@@ -40,13 +41,30 @@ export function loadLocations(): void {
 
         if (Array.isArray(parsed) && parsed.every(isFilterApi)) {
             savedLocations = parsed;
-            if (output) output.textContent = 'Search Something.';
+            if (mainAssistantDisplay) {
+                displayMessageColor(mainAssistantDisplay, 'Search Something.', 'neutral');
+            }
+            if (secondaryAssistantDisplay) {
+                displayMessageColor(secondaryAssistantDisplay, 'Type a city or country, or pick a time zone', 'info');
+            }
         } else {
             throw new Error('Invalid saved locations');
         }
     } catch (er) {
-        if (output) {
-            output.textContent = er instanceof Error ? er.message : 'Could not load saved locations';
+        if (er instanceof Error) {
+            if (mainAssistantDisplay) {
+                displayMessageColor(mainAssistantDisplay, er.message, 'error');
+            }
+            if (secondaryAssistantDisplay) {
+                displayMessageColor(secondaryAssistantDisplay, '', 'info');
+            }        
+        } else {
+            if (mainAssistantDisplay) {
+                displayMessageColor(mainAssistantDisplay, 'Could not load saved locations', 'error');
+            }
+            if (secondaryAssistantDisplay) {
+                displayMessageColor(secondaryAssistantDisplay, '', 'info');
+            }   
         }
         localStorage.removeItem(STORAGE_KEY);
         savedLocations = [];

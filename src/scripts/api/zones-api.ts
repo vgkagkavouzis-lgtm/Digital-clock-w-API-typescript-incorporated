@@ -2,29 +2,30 @@
 
 import type { ApiZone, FilterApi } from '../types/zones';
 import { setCountriesAndCities, setFilteredData } from '../state/store';
-import { convertFromTimezone, convertToTimezone, output, selectZones } from '../dom/elements';
+import { convertFromTimezone, convertToTimezone, mainAssistantDisplay, secondaryAssistantDisplay, selectZones } from '../dom/elements';
+import { displayMessageColor } from '../ui/assistant-messages';
 
 const TIMEZONES_URL = 'https://api.timezones.in/v1/timezones';
 
 export async function loadZones(): Promise<FilterApi[] | undefined> {
-    if (!output) {
-        console.log('Output paragraph not found');
-        return;
-    }
+    displayMessageColor(mainAssistantDisplay, 'Loading time-zones..', 'info');
+    displayMessageColor(secondaryAssistantDisplay, '', 'info')
 
-    output.textContent = 'Loading data..';
 
     try {
         const res = await fetch(TIMEZONES_URL);
 
         if (!res.ok) {
             console.log('Could not get data!');
-            output.textContent = 'Could not load data';
+            displayMessageColor(mainAssistantDisplay, 'Could not load data', 'error')
             return;
         }
 
         const zonesData: ApiZone[] = await res.json();
-        output.textContent = 'Search something..';
+        
+        displayMessageColor(mainAssistantDisplay, 'Search something..', 'neutral')
+        displayMessageColor(secondaryAssistantDisplay, 'Type a city or country, or pick a time zone', 'info')
+
         return extractData(zonesData);
     } catch (er) {
         if (er instanceof Error) {
@@ -32,8 +33,9 @@ export async function loadZones(): Promise<FilterApi[] | undefined> {
         } else {
             console.log('Unknown error:', er);
         }
-        output.textContent = 'Could not load data';
-    }
+        displayMessageColor(mainAssistantDisplay, 'Could not load data', 'error')
+        displayMessageColor(secondaryAssistantDisplay, 'Check the internet connection', 'error')
+    } 
 }
 
 // Not exported: only loadZones needs it.

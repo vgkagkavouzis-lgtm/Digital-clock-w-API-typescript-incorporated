@@ -9,7 +9,8 @@ export const suggestionsBox = document.querySelector<HTMLDivElement>('.suggestio
 export const selectZones = document.querySelector<HTMLSelectElement>('#timeZoneSelect');
 
 // ---- Assistant message ----
-export const output = document.querySelector<HTMLParagraphElement>('.assistant-display p');
+export const mainAssistantDisplay = document.querySelector<HTMLParagraphElement>('#main-assistant-display');
+export const secondaryAssistantDisplay = document.querySelector<HTMLParagraphElement>('#secondary-assistant-display')
 
 // ---- Main display ----
 export const country = document.querySelector<HTMLSpanElement>('#country');

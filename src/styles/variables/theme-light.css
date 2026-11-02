@@ -11,4 +11,12 @@
     --faded-bg-color: rgb(228, 226, 252);
     --whiter-bg-color: rgb(241, 242, 255);
     --yellow-color: #EAC452;
+
 }
+
+/* Message output colors */
+[data-message-type='success'] { color: #1A7243;}
+[data-message-type='info'] { color: #425B9A;}
+[data-message-type='neutral'] { color: rgb(115,115,115);}
+[data-message-type='warning'] { color: #8A5A00;}
+[data-message-type='error'] { color: #C62828;}

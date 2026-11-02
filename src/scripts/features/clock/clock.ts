@@ -9,9 +9,11 @@ import {
     offset,
     period,
     savedLocationsUl,
+    secondaryAssistantDisplay,
     time,
 } from '../../dom/elements';
 import { dateFormatter } from './time-formatter';
+import { displayMessageColor } from '../../ui/assistant-messages';
 
 // Private to this file: nobody else needs them.
 const localZone: string = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -23,10 +25,14 @@ export function getTime(): void {
 
     // Local time
     const localFormatter = dateFormatter(localZone, is12hour);
-    if (localZoneDisplay) localZoneDisplay.textContent = localZone;
+    if (localZoneDisplay) localZoneDisplay.textContent = localZone
     if (localTime) localTime.textContent = localFormatter.timeVl;
     if (localPeriod) localPeriod.textContent = localFormatter.periodVl;
     if (localOffset) localOffset.textContent = localFormatter.offsetVl;
+
+    if (!localZoneDisplay || !localTime || !localPeriod || !localOffset) {
+        displayMessageColor(secondaryAssistantDisplay, 'Check the local clock', 'error')
+    }
 
     // Selected zone
     const selectedZone = getSelectedZone();

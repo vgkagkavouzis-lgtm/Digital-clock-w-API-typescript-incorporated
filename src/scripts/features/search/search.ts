@@ -6,23 +6,26 @@ import {
     country,
     formInput,
     mainDisplayVisual23hDiv,
-    output,
+    mainAssistantDisplay,
+    secondaryAssistantDisplay,
     searchInput,
     selectZones,
     timeZone,
 } from '../../dom/elements';
 import { getTime } from '../clock/clock';
 import { DivBuilder23hVisual } from '../visual-hours/visual-builder';
+import { displayMessageColor } from '../../ui/assistant-messages';
 
 export function updateText(inp: string): void {
     const filteredData = getFilteredData();
 
     if (!filteredData) {
-        if (output) output.textContent = 'Could not load data';
+        displayMessageColor(mainAssistantDisplay, 'Could not load data', 'error')
+        displayMessageColor(secondaryAssistantDisplay, '', 'info')
         return;
     }
 
-    const search = inp.toLowerCase();
+    const search = inp.trim().toLowerCase();
     const result = filteredData.find(
         (value) =>
             value.country.toLowerCase() === search ||
@@ -31,7 +34,7 @@ export function updateText(inp: string): void {
     );
 
     if (!result) {
-        if (output) output.textContent = 'No matching timezone found';
+        if (mainAssistantDisplay) mainAssistantDisplay.textContent = 'No matching timezone found';
         return;
     }
 
@@ -66,7 +69,7 @@ export function initSearch(): void {
     if (form && input) {
         form.addEventListener('submit', (e: SubmitEvent) => {
             e.preventDefault();
-            updateText(input.value.trim());
+            updateText(input.value);
             input.value = '';
         });
     }

@@ -33,3 +33,7 @@ export type TimeDateFormatter = {
 export type Destination = 'Main Display' | 'Saved Zones';
 
 export type HoursType = 'Working hours' | 'Sleep hours' | 'Awake hours';
+
+// Message type / coloring
+export type MessageType = 'success' | 'error' | 'warning' | 'info' | 'neutral';
+
