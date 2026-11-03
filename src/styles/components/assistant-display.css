@@ -4,8 +4,8 @@
     display: flex;
     flex-direction: column;
     gap: .5rem;
-    border: var(--border);
-    border-radius: var(--border-radius);
+    /* border: var(--border);
+    border-radius: var(--border-radius); */
     width: var(--general-width);
 }
 
@@ -21,10 +21,10 @@
 
 #main-assistant-display {
     font-size: 2rem;
-    margin: .2rem 1rem 0 1rem;
+    margin: .2rem 1rem 0 0;
 }
 
 #secondary-assistant-display {
-    margin: 0 1rem .2rem 1rem;
+    margin: 0 1rem .2rem 0;
     font-size: 1rem;
 }

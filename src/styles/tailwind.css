@@ -1,0 +1,7 @@
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* your current CSS, unchanged, one layer below the utilities */
+@import "./main.css" layer(components);

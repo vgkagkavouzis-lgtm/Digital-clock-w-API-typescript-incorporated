@@ -41,30 +41,19 @@ export function loadLocations(): void {
 
         if (Array.isArray(parsed) && parsed.every(isFilterApi)) {
             savedLocations = parsed;
-            if (mainAssistantDisplay) {
-                displayMessageColor(mainAssistantDisplay, 'Search Something.', 'neutral');
-            }
-            if (secondaryAssistantDisplay) {
-                displayMessageColor(secondaryAssistantDisplay, 'Type a city or country, or pick a time zone', 'info');
-            }
+            displayMessageColor(mainAssistantDisplay, 'Search Something.', 'neutral');
+            displayMessageColor(secondaryAssistantDisplay, 'Type a city or country, or pick a time zone', 'info');
         } else {
             throw new Error('Invalid saved locations');
         }
+        
     } catch (er) {
         if (er instanceof Error) {
-            if (mainAssistantDisplay) {
-                displayMessageColor(mainAssistantDisplay, er.message, 'error');
-            }
-            if (secondaryAssistantDisplay) {
-                displayMessageColor(secondaryAssistantDisplay, '', 'info');
-            }        
+            displayMessageColor(mainAssistantDisplay, er.message, 'error');
+            displayMessageColor(secondaryAssistantDisplay, '', 'info');   
         } else {
-            if (mainAssistantDisplay) {
-                displayMessageColor(mainAssistantDisplay, 'Could not load saved locations', 'error');
-            }
-            if (secondaryAssistantDisplay) {
-                displayMessageColor(secondaryAssistantDisplay, '', 'info');
-            }   
+            displayMessageColor(mainAssistantDisplay, 'Could not load saved locations', 'error');
+            displayMessageColor(secondaryAssistantDisplay, '', 'info');
         }
         localStorage.removeItem(STORAGE_KEY);
         savedLocations = [];

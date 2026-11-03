@@ -14,23 +14,28 @@ export function initAutocomplete(): void {
     // inside callbacks, but not on an imported binding.
     const searchInput = searchInputEl;
     const suggestionsBox = suggestionsBoxEl;
-    if (!searchInput || !suggestionsBox) return;
-
+    if (!searchInput || !suggestionsBox) {
+        displayMessageColor(mainAssistantDisplay, 'Search input error', 'error')
+        displayMessageColor(secondaryAssistantDisplay, '', 'info')
+        return;
+    }
     // Typing: rebuild the suggestion list
     searchInput.addEventListener('input', () => {
         suggestionsBox.replaceChildren();
         eventIndex = -1;
 
         const searchTerm = searchInput.value.trim().toLowerCase();
-        if (searchTerm === '') return;
-
+        if (searchTerm === '') {
+            displayMessageColor(mainAssistantDisplay, 'Search something..', 'neutral')
+            displayMessageColor(secondaryAssistantDisplay, 'Type a city or country, or pick a time zone', 'info')
+   
+            return;
+        }
         const countriesAndCities = getCountriesAndCities();
         if (countriesAndCities.length === 0) {
             displayMessageColor(secondaryAssistantDisplay, 'No data loaded yet', 'warning')
             return;
         }
-        
-        checkInputIfOnlyLetters(searchTerm);
         
         countriesAndCities.forEach((item) => {
             if (item.toLowerCase().includes(searchTerm)) {
@@ -38,9 +43,7 @@ export function initAutocomplete(): void {
                 div.classList.add('suggestions');
                 div.textContent = item;
                 suggestionsBox.appendChild(div);
-
-
-
+                
                 div.addEventListener('click', () => {
                     searchInput.value = item;
                     updateText(item);
@@ -48,6 +51,8 @@ export function initAutocomplete(): void {
                 });
             }
         });
+        
+        checkInputIfOnlyLetters(searchInput);
     });
 
     // Click anywhere else closes the list
@@ -61,7 +66,11 @@ export function initAutocomplete(): void {
     // Arrow keys, Escape, Enter
     searchInput.addEventListener('keydown', (e) => {
         const divs = suggestionsBox.querySelectorAll<HTMLDivElement>('.suggestions');
-        if (divs.length === 0) return;
+        if (divs.length === 0) {
+            // displayMessageColor(mainAssistantDisplay, 'Search something..', 'neutral')
+            // displayMessageColor(secondaryAssistantDisplay, 'Type a city or country, or pick a time zone', 'info')
+            return
+        }
 
         if (e.key === 'ArrowDown') {
             e.preventDefault();
@@ -98,7 +107,6 @@ export function initAutocomplete(): void {
     });
 }
 
-// Not exported: only the listeners above use it.
 // Wraps around: past the last item goes to the first, before the first goes to the last.
 function updateHighlights(divs: NodeListOf<HTMLDivElement>, idx: number, input: HTMLInputElement): void {
     divs.forEach((div) => div.classList.remove('highlight'));
