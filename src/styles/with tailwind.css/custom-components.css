@@ -4,7 +4,7 @@
         @apply bg-(--location-btn-background) hover:text-white;
     }
     .suggestions-box {
-        @apply absolute rounded-(--border-radius) top-18  bg-(--whiter-color) w-(--general-width) max-h-100 overflow-y-auto z-2;
+        @apply absolute rounded-(--border-radius) top-18  bg-(--whiter-bg-color) w-(--general-width) max-h-100 overflow-y-auto z-2;
     }
     .suggestions {
         @apply p-[.4rem] font-[inherit] text-[length:inherit];
@@ -35,13 +35,13 @@
         @apply text-[.8rem];
     }
     .hour-div-plus-label-div {
-        @apply grid grid-rows-[1.9rem_auto] items-center justify-center gap-y-[.4rem]
+        @apply grid grid-rows-[1.9rem_auto] items-center justify-items-center gap-y-[.4rem]
     }
     .hours-23-div .visual-box-24h, .hours-00-div .visual-box-24h, .hours-01-div .visual-box-24h, .hours-02-div .visual-box-24h, .hours-03-div .visual-box-24h, .hours-04-div .visual-box-24h, .hours-05-div .visual-box-24h, .hours-06-div .visual-box-24h {
         @apply bg-(--location-btn-background);
     }
     .hours-07-div .visual-box-24h, .hours-08-div .visual-box-24h, .hours-18-div .visual-box-24h, .hours-19-div .visual-box-24h, .hours-20-div .visual-box-24h, .hours-21-div .visual-box-24h, .hours-22-div .visual-box-24h {
-        @apply bg-(--faded-bg-color) border-main;
+        @apply bg-(--faded-bg-color) border-(length:--border-width) border-(--border-color);
     }
     .hours-09-div .visual-box-24h, .hours-10-div .visual-box-24h, .hours-11-div .visual-box-24h, .hours-12-div .visual-box-24h, .hours-13-div .visual-box-24h, .hours-14-div .visual-box-24h, .hours-15-div .visual-box-24h, .hours-16-div .visual-box-24h, .hours-17-div .visual-box-24h {
         @apply bg-(--yellow-color);
@@ -58,7 +58,7 @@
     }
     .div-saved-city-time-removeBtn {
         @apply list-none flex flex-row items-center justify-between my-4 
-                border-b-(length:--border-width) border-(--border-color) rounded-(--border-radius)
+                border-b-(length:--border-width) border-(--border-color) 
                 pr-4 pb-4 pl-4 w-(--general-width);
     }
     .saved-city-offset {
@@ -68,7 +68,7 @@
         @apply relative flex flex-row justify-center items-center;
     }
     .saved-time {
-        @apply absolute left-[-2.3rem] top-[-.8rem] h-[50%] translate-y-[55%] text-[1.2rem];
+        @apply absolute left-[-2.3rem] top-[-.8rem] h-[50%] -translate-y-[55%] text-[1.2rem];
     }
     .saved-period {
         @apply text-[.6rem] absolute top-0 left-[2.9rem];
