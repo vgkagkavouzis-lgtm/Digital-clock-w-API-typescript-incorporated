@@ -18,15 +18,22 @@
 
 #converter-form { margin-bottom: .5rem; gap: .5rem; }
 
-#converter-date-time-container { display: flex; flex-direction: row; gap: 3.2rem; }
+#converter-date-time-container { 
+    display: flex; 
+    flex-direction: row; 
+    gap: 3.2rem; }
 
-#convertedList { list-style: none; border-top: var(--border); padding: 1rem 0; }
+#convertedList { 
+    list-style: none; 
+    border-top: var(--border); 
+    padding: 1rem 0; }
 
 #convertedData { display: flex; flex-direction: column; }
 
 .converted-time { font-size: 2.7rem; }
 .converted-date { font-size: 1.2rem; }
-.converted-date, .converted-time, .converted-timezone { color: var(--font-color); }
+.converted-date, .converted-time, .converted-timezone { 
+    color: var(--font-color); }
 
 /* for tablet */
 @media (min-width: 590px) and (max-width: 860px) {

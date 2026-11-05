@@ -3,6 +3,7 @@
 
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities);
+@custom-variant dark (&:where(.dark-mode, .dark-mode *));
 
 /* your current CSS, unchanged, one layer below the utilities */
 /* @import "../main.css" layer(components); */
