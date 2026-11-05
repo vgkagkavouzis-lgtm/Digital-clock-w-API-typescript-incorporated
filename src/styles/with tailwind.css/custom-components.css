@@ -1,4 +1,56 @@
 @layer components {
+    /* Search */
+    .highlight {
+        @apply bg-(--location-btn-background) hover:text-white;
+    }
+    .suggestions-box {
+        @apply absolute rounded-(--border-radius) top-18  bg-(--whiter-color) w-(--general-width) max-h-100 overflow-y-auto z-2;
+    }
+    .suggestions {
+        @apply p-[.4rem] font-[inherit] text-[length:inherit];
+    }
+
+    
+
+    /* Visual Hours */
+    .visual-23h-boxes-container {
+        @apply flex flex-row justify-center items-center relative my-12;
+    }
+    .visual-box-24h {
+        @apply m-[.15rem] rounded-(--border-radius);
+    }
+    .visual-box-24h-small {
+        @apply w-4 h-4;
+    }
+    .visual-box-24h-medium {
+        @apply w-4 h-[1.3rem];
+    }
+    .visual-box-24h-large {
+        @apply w-4 h-[1.6rem];
+    }
+    .visual-box-24h-middle {
+        @apply w-4 h-[1.9rem];
+    }
+    .label-box-24h {
+        @apply text-[.8rem];
+    }
+    .hour-div-plus-label-div {
+        @apply grid grid-rows-[1.9rem_auto] items-center justify-center gap-y-[.4rem]
+    }
+    .hours-23-div .visual-box-24h, .hours-00-div .visual-box-24h, .hours-01-div .visual-box-24h, .hours-02-div .visual-box-24h, .hours-03-div .visual-box-24h, .hours-04-div .visual-box-24h, .hours-05-div .visual-box-24h, .hours-06-div .visual-box-24h {
+        @apply bg-(--location-btn-background);
+    }
+    .hours-07-div .visual-box-24h, .hours-08-div .visual-box-24h, .hours-18-div .visual-box-24h, .hours-19-div .visual-box-24h, .hours-20-div .visual-box-24h, .hours-21-div .visual-box-24h, .hours-22-div .visual-box-24h {
+        @apply bg-(--faded-bg-color) border-main;
+    }
+    .hours-09-div .visual-box-24h, .hours-10-div .visual-box-24h, .hours-11-div .visual-box-24h, .hours-12-div .visual-box-24h, .hours-13-div .visual-box-24h, .hours-14-div .visual-box-24h, .hours-15-div .visual-box-24h, .hours-16-div .visual-box-24h, .hours-17-div .visual-box-24h {
+        @apply bg-(--yellow-color);
+    }
+    .now-marker {
+        @apply absolute text-[.8rem] after:absolute after:content-['▼'];
+    }
+
+
 
     /* Saved Locations */
     .saved-zones-container li {
@@ -19,6 +71,24 @@
         @apply absolute left-[-2.3rem] top-[-.8rem] h-[50%] translate-y-[55%] text-[1.2rem];
     }
     .saved-period {
-        @apply text-[.6rem] absolute top-0 left-[2.9rem]
+        @apply text-[.6rem] absolute top-0 left-[2.9rem];
     }
+    .removeBtn {
+        @apply py-[.3rem] px-[.6rem] text-(--font-color)
+    }
+    .saved-city, .saved-offset, .saved-time, .saved-period {
+        @apply text-(--font-color);
+    }
+    .visual-23h-boxes-container-saved-zones {
+        @apply flex flex-row justify-center items-center my-12 relative;
+    }
+    .saved-zones-23hVisual {
+        @apply w-[.2rem];
+    }
+    .now-saved-zones {
+        @apply hidden -top-10 left-40;
+    }
+    .now-saved-zones::after {
+        @apply hidden top-[1.2rem] left-[.6rem];
+    }    
 }

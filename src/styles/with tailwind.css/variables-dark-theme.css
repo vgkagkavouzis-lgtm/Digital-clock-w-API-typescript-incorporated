@@ -1,5 +1,5 @@
 :root.dark-mode {
-    --border: .09rem solid rgb(66,91,154);
+    --border-color: rgb(66, 91, 154);
 
     --font-color: rgb(221, 223, 255);
     --font-color-faded: rgb(123, 137, 175);
