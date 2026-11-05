@@ -1,0 +1,26 @@
+:root {
+    /* border */
+    --border-color: rgb(187, 187, 187);
+    --border-width: .09rem;
+    --border-radius: .4rem;
+
+    /* colors Day-mode */
+    --font-color: rgb(0, 0, 0);
+    --font-color-faded: rgb(115, 115, 115);
+    --font-color-more-faded: rgb(155, 155, 155); /* not used anywhere yet */
+
+    --location-btn-background: rgb(66,91,154);
+
+    --faded-bg-color: rgb(228, 226, 252);
+    --whiter-bg-color: rgb(241, 242, 255);
+    --yellow-color: #EAC452;
+
+    /* Message output colors */
+    --msg-success: #1A7243;
+    --msg-info: #425B9A;
+    --msg-neutral: rgb(115,115,115);
+    --msg-warning: #8A5A00;
+    --msg-error: #C62828;
+
+}
+

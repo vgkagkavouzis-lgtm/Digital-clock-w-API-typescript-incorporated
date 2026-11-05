@@ -5,12 +5,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&display=swap" />
-    <link rel="stylesheet" href="./src/styles/tailwind.css" />
+    <link rel="stylesheet" href="./src/styles/with tailwind.css/tailwind.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>clock-typescript</title>
   </head>
   <body>
-    <nav>
+    <nav class=" flex justify-end items-center g-4">
         <div id="toggle12hour">
             <button class="btn">12h</button>
         </div>
@@ -22,15 +22,15 @@
         </div>
         <!-- <button class="night-mode"></button> -->
     </nav>
-    <section id="header">
-        <div id="title-info">
+    <section id="header" class="flex flex-row justify-between items-center flex-wrap gap-6 my-4 mr-4 ">
+        <div id="title-info" class="flex flex-col">
             <h1>What time is it?</h1>
             <p>A web app to get any time you need!</p>
         </div>  
-        <div id="local-time">
+        <div id="local-time" class="flex flex-col">
             <p>Local time · <span id="localZoneDisplay"></span></p>
             <h6 id="localTimeP">
-                <span id="localTime"></span>
+                <span id="localTime" class="text-[1.2rem]"></span>
                 <span id="localPeriod"></span>
                 <span id="localOffset"></span>
             </h6>
@@ -71,7 +71,7 @@
             </div>
         </div>
     </section>
-    <section id="middle-section">
+    <section id="middle-section" class="flex justify-between flex-wrap">
         <section id="display-w-btn">
             <div class="container-display">
                 <div id="displays">

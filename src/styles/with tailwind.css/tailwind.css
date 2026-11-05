@@ -1,0 +1,54 @@
+/* from lowest to highest */
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+/* your current CSS, unchanged, one layer below the utilities */
+/* @import "../main.css" layer(components); */
+
+@import "./sizing.css";
+@import "./variables-dark-theme.css";
+@import "./variables-light-theme.css";
+@import "./custom-theme.css";
+@import "./custom-components.css";
+@import "./custom-utilities.css";
+
+
+
+
+@layer base {
+    * {
+        @apply box-border;
+    }
+    body {
+        @apply flex flex-col mx-auto py-8 px-4 font-[Manrope,sans-serif] text-[1rem]/[1.5] bg-(--faded-bg-color) text-(--font-color);
+    }
+    button, input, select {
+        @apply  border-main font-[inherit] p-[.6rem]  bg-(--whiter-bg-color) text-(--font-color);
+    }
+    input, select {
+        @apply focus:outline-[.1rem] focus:outline-(--location-btn-background);
+    }
+    button {
+        @apply active:scale-90 transition-transform duration-100 ease-in;
+    }
+
+    /* typography */
+    label, p {
+        @apply text-(--font-color-faded) text-[.9rem];
+    }
+    h1 {
+        @apply text-[2rem];
+    }
+    h3 {
+        @apply text-[1.2rem];
+    }
+    label {
+        @apply text-[.9rem]/[1.5];
+    }
+    h1, h3, h5, h6, p {
+        @apply m-0;
+    }
+
+}
