@@ -1,0 +1,11 @@
+@layer components {
+    .highlight {
+        @apply bg-(--location-btn-background) hover:text-white;
+    }
+    .suggestions-box {
+        @apply absolute rounded-(--border-radius) top-18  bg-(--whiter-bg-color) w-(--general-width) max-h-100 overflow-y-auto z-2;
+    }
+    .suggestions {
+        @apply p-[.4rem] font-[inherit] text-[length:inherit];
+    }
+}

@@ -1,0 +1,44 @@
+@layer components {
+    .saved-zones-container li {
+        @apply flex flex-row justify-center items-center ;
+    }
+    .div-saved-city-time-removeBtn {
+        @apply list-none flex flex-row items-center justify-between my-4 
+                border-b-(length:--border-width) border-(--border-color) 
+                pr-4 pb-4 pl-4 w-(--general-width) ;
+    }
+    .saved-city-offset {
+        @apply flex flex-col;
+    }
+    .saved-time-period {
+        @apply relative flex flex-row justify-center items-center;
+    }
+    .saved-time {
+        @apply absolute left-[0rem] top-[-3.7rem] h-[50%] -translate-y-[55%] text-[1.2rem];
+        @variant tablet {
+            @apply left-[-2.3rem] top-[-.8rem];
+        }
+    }
+    .saved-period {
+        @apply text-[.6rem] absolute top-[-2.5rem] left-[5rem];
+        @variant tablet {
+            @apply top-0 left-[2.9rem];
+        }
+    }
+    .removeBtn {
+        @apply py-[.3rem] px-[.6rem] text-(--font-color)
+    }
+    .saved-city, .saved-offset, .saved-time, .saved-period {
+        @apply text-(--font-color);
+    }
+    .visual-23h-boxes-container-saved-zones {
+        @apply flex flex-row justify-center items-center my-12 relative;
+    }
+    .saved-zones-23hVisual {
+        @apply w-[.2rem];
+    }
+    .now-saved-zones {
+        @apply hidden -top-10 left-40
+                after:hidden after:top-[1.2rem] after:left-[.6rem];
+    }
+}

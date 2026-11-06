@@ -12,8 +12,12 @@
 @import "./variables-dark-theme.css";
 @import "./variables-light-theme.css";
 @import "./custom-theme.css";
-@import "./custom-components.css";
 @import "./custom-utilities.css";
+
+/* components */
+@import "./components/search.css";
+@import "./components/visual-hours.css";
+@import "./components/saved-locations.css";
 
 
 
