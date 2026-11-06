@@ -12,6 +12,11 @@ body {
     /* overflow-x: auto; */
 }
 
+/* for mobile */
+@media (max-width: 590px) {
+    body { width: 24rem; }
+
+}
 /* for tablet */
 @media (min-width: 590px) and (max-width: 860px) {
     body { max-width: 38rem; }

@@ -42,10 +42,16 @@
     font-size: 1.2rem;
 }
 
-.saved-period { font-size: .6rem; position: absolute; top: 0rem; left: 2.9rem; }
+.saved-period { 
+    font-size: .6rem; 
+    position: absolute; 
+    top: 0rem; 
+    left: 2.9rem; }
 
 /* `left` has no effect: the button is not positioned (no position: ...) */
-.removeBtn { left: 32rem; padding: .3rem .6rem; color: var(--font-color); }
+.removeBtn { 
+    padding: .3rem .6rem; 
+    color: var(--font-color); }
 
 .saved-city, .saved-offset, .saved-time, .saved-period { color: var(--font-color); }
 
@@ -61,6 +67,95 @@
 
 .saved-zones-23hVisual { width: .2rem; }
 
-/* the "Now" marker is hidden in saved rows */
-.now-saved-zones { display: none; top: -2.5rem; left: 10.2rem; }
-.now-saved-zones::after { display: none; top: 1.2rem; left: .6rem; }
+/* the "Now" marker */
+.now-saved-zones { 
+    position: absolute;
+    font-size: .8rem; 
+}
+.now-saved-zones::after { 
+    content: '▼';
+    position: absolute;
+}
+
+/* for mobile */
+@media (max-width: 590px) {
+    .visual-23h-boxes-container-saved-zones {
+        margin: 1rem;
+        position: absolute;
+        left: 4.4rem;
+        top: 1.4rem;
+    }
+    .div-saved-city-time-removeBtn {
+        flex-direction: column;
+        align-items: start;
+        position: relative;
+        height: 6rem;
+        margin: 1rem;
+        padding: 1rem;
+    }
+    .saved-city-offset {
+        top: 0rem;
+        left: 0.6rem;
+        position: absolute;
+        gap: .3rem;
+    }
+    .saved-city {
+        font-weight: 500;
+    }
+    .saved-offset {
+        font-size: 0.7rem;
+
+    }
+    .saved-time {
+        top: -1.2rem;
+        left: 14.9rem;
+    }
+    .saved-period {
+        top: -.4rem;
+        left: 20rem;
+    }
+    .removeBtn {
+        position: absolute;
+        top: 2.4rem;
+        left: 20rem;
+    }
+    .now-saved-zones { 
+        font-size: .7rem; 
+        top: -2.2rem;
+        left: 5.2rem;
+    }
+    .now-saved-zones::after { 
+        top: 1rem;
+        left: .5rem;
+    
+    }
+
+}
+
+/* for tablet */
+@media (min-width: 590px) and (max-width: 860px) {
+    .now-saved-zones { 
+        font-size: .7rem; 
+        top: -2.2rem;
+        left: 5.2rem;
+    }
+    .now-saved-zones::after { 
+        top: 1rem;
+        left: .5rem;
+    
+    }   
+}
+
+/* for laptop */
+@media (min-width: 861px) {
+            .now-saved-zones { 
+        font-size: .7rem; 
+        top: -2.2rem;
+        left: 5.2rem;
+    }
+    .now-saved-zones::after { 
+        top: 1rem;
+        left: .5rem;
+    
+    }  
+}
