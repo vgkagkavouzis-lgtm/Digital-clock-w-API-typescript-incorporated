@@ -14,26 +14,47 @@
 
     /* Visual Hours */
     .visual-23h-boxes-container {
-        @apply flex flex-row justify-center items-center relative my-12;
+        @apply flex flex-row justify-center items-center relative my-12 gap-[.05rem];
+            @variant tablet {
+                @apply gap-0;
+            }
     }
     .visual-box-24h {
-        @apply m-[.15rem] rounded-(--border-radius);
+        @apply m-[.15rem] rounded-(--border-radius-visual-boxes) w-[.4rem] h-[.4rem];
     }
+
     .visual-box-24h-small {
-        @apply w-4 h-4;
+        @apply w-[.5rem] h-[1rem];
+            @variant tablet {
+                @apply w-[1rem];
+            }
     }
     .visual-box-24h-medium {
-        @apply w-4 h-[1.3rem];
+        @apply w-[.5rem] h-[1.3rem];
+            @variant tablet {
+                @apply w-[1rem];
+            }
     }
     .visual-box-24h-large {
-        @apply w-4 h-[1.6rem];
+        @apply w-[.5rem] h-[1.6rem];
+            @variant tablet {
+                @apply w-[1rem];
+            }
     }
     .visual-box-24h-middle {
-        @apply w-4 h-[1.9rem];
+        @apply w-[.5rem] h-[1.9rem];
+            @variant tablet {
+                @apply w-[1rem];
+            }
     }
     .label-box-24h {
-        @apply text-[.8rem];
+        @apply text-[.6rem];
+            @variant tablet {
+                @apply text-[.8rem];
+            }
     }
+
+    
     .hour-div-plus-label-div {
         @apply grid grid-rows-[1.9rem_auto] items-center justify-items-center gap-y-[.4rem]
     }
@@ -47,19 +68,21 @@
         @apply bg-(--yellow-color);
     }
     .now-marker {
-        @apply absolute text-[.8rem] after:absolute after:content-['▼'];
+        @apply absolute text-[.8rem] after:absolute after:content-['▼']
+                absolute top-[-2rem] 
+                after:top-[.8rem] after:left-[.5rem];
     }
 
 
 
     /* Saved Locations */
     .saved-zones-container li {
-        @apply flex flex-row justify-center items-center;
+        @apply flex flex-row justify-center items-center ;
     }
     .div-saved-city-time-removeBtn {
         @apply list-none flex flex-row items-center justify-between my-4 
                 border-b-(length:--border-width) border-(--border-color) 
-                pr-4 pb-4 pl-4 w-(--general-width);
+                pr-4 pb-4 pl-4 w-(--general-width) ;
     }
     .saved-city-offset {
         @apply flex flex-col;
@@ -68,10 +91,16 @@
         @apply relative flex flex-row justify-center items-center;
     }
     .saved-time {
-        @apply absolute left-[-2.3rem] top-[-.8rem] h-[50%] -translate-y-[55%] text-[1.2rem];
+        @apply absolute left-[0rem] top-[-3.7rem] h-[50%] -translate-y-[55%] text-[1.2rem];
+        @variant tablet {
+            @apply left-[-2.3rem] top-[-.8rem];
+        }
     }
     .saved-period {
-        @apply text-[.6rem] absolute top-0 left-[2.9rem];
+        @apply text-[.6rem] absolute top-[-2.5rem] left-[5rem];
+        @variant tablet {
+            @apply top-0 left-[2.9rem];
+        }
     }
     .removeBtn {
         @apply py-[.3rem] px-[.6rem] text-(--font-color)
@@ -86,9 +115,7 @@
         @apply w-[.2rem];
     }
     .now-saved-zones {
-        @apply hidden -top-10 left-40;
+        @apply hidden -top-10 left-40
+                after:hidden after:top-[1.2rem] after:left-[.6rem];
     }
-    .now-saved-zones::after {
-        @apply hidden top-[1.2rem] left-[.6rem];
-    }    
 }

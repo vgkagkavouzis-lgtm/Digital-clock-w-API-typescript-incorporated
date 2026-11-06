@@ -22,12 +22,12 @@
         </div>
         <!-- <button class="night-mode"></button> -->
     </nav>
-    <section id="header" class="flex flex-row justify-between items-center flex-wrap gap-6 my-4 mr-4 ">
-        <div id="title-info" class="flex flex-col">
+    <section id="header" class="flex flex-col tablet:flex-row justify-start tablet:justify-between tablet:items-center flex-wrap gap-6 my-4 mr-4 ">
+        <div id="title-info" class="flex flex-col justify-start">
             <h1>What time is it?</h1>
             <p>A web app to get any time you need!</p>
         </div>  
-        <div id="local-time" class="flex flex-col">
+        <div id="local-time" class="flex flex-col justify-start">
             <p>Local time · <span id="localZoneDisplay"></span></p>
             <h6 id="localTimeP">
                 <span id="localTime" class="text-[1.2rem]"></span>
@@ -63,7 +63,7 @@
                     <!-- <div class="suggestions highlight">sdfsdfsdf</div> -->
                 </div>    
             </form> 
-            <div id="main-select-input" class="flex flex-col justify-center min-w-86 max-w-(--general-width)">
+            <div id="main-select-input" class="flex flex-col justify-center min-w-86 w-(--general-width)">
                 <label for="timeZoneSelect">Or choose a timezone</label>
                 <select id="timeZoneSelect" class="">
                     <option value="Choose a time-zone">Choose a time-zone</option>
@@ -85,7 +85,7 @@
                         <p>·</p>
                         <p id="offset" class="text-(--font-color) dark:text-(--yellow-color)">Offset</p>  
                     </div>
-                    <div class="visual-23h-boxes-container" id="main-display-visual-23h-boxes-container">
+                    <div class="visual-23h-boxes-container " id="main-display-visual-23h-boxes-container">
                     </div>
                     <!-- <div class="visual-23h-boxes-container">
                         <div class="hours-00-div hour-div-plus-label-div">
@@ -312,7 +312,7 @@
             </div>
     
         </section>
-        <section id="time-converter" class="flex flex-col border-main p-4 bg-(--whiter-bg-color) h-112 min-w-86 max-w-(--general-width)">
+        <section id="time-converter" class="flex flex-col border-main p-4 bg-(--whiter-bg-color) h-112 min-w-86 max-w-(--general-width) tablet:">
             <h3>Time Converter</h3>
             <form action="" id="converter-form" class="flex flex-col mb-2 gap-2">
                 <div id="converter-time-from-zone-container" class="flex flex-col">
@@ -352,7 +352,7 @@
     </section>
     
 
-    <footer>V. Gkagkavouzis <span id="footerDate"></span> &copy;</footer>
+    <footer class="mt-6">V. Gkagkavouzis <span id="footerDate"></span> &copy;</footer>
  
     <script type="module" src="/src/scripts/main.ts"></script>
   </body>
