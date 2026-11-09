@@ -3,8 +3,8 @@
     --border-radius-visual-boxes: .2rem;
     
     --general-width: 21rem;
-    @variant tablet, laptop {
-        :root {--general-width: 34rem;}
-    }
 }
 
+@variant tablet, laptop {
+    :root {--general-width: 34rem;}
+}

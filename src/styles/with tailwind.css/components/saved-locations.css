@@ -6,7 +6,7 @@
         @apply flex flex-row justify-center items-center m-1 
                 top-[1.4rem] left-[4.4rem] absolute;
         @variant tablet {
-            @apply relative my-12 mx-0;
+            @apply relative my-12 mx-0 top-[.2rem] left-[2rem];
         }
     }
     .div-saved-city-time-removeBtn {
@@ -15,7 +15,7 @@
                 p-1 w-(--general-width) h-[6rem] m-4;
         @variant tablet {
             @apply flex-row pt-0 pr-4 pb-4 pl-4 w-(--general-width) 
-                   items-center h-auto m-0; 
+                   items-center h-auto m-0 static; 
         }
     }
     .saved-city-offset {
@@ -33,17 +33,20 @@
     .saved-time {
         @apply absolute left-[14.9rem] top-[-1.2rem]  text-[1.2rem];
         @variant tablet {
-            @apply  left-[-2.3rem] top-[-.8rem];
+            @apply  left-[-1.8rem] top-[-1rem] ;
         }
     }
     .saved-period {
         @apply text-[.6rem] absolute top-[-.4rem] left-[20rem];
         @variant tablet {
-            @apply top-0 left-[2.9rem];
+            @apply top-[-.3rem] left-[3rem];
         }
     }
     .removeBtn {
-        @apply absolute top-[1.6rem] left-[20rem] py-[.3rem] px-[.6rem] text-(--font-color)
+        @apply absolute top-[1.6rem] left-[20rem] py-[.3rem] px-[.6rem] text-(--font-color);
+        @variant tablet {
+            @apply static;
+        }
     }
     .now-saved-zones {
         @apply absolute top-[-2.2rem] left-[5.2rem] text-[.7rem]
