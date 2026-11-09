@@ -1,10 +1,10 @@
 @layer components {
     .saved-zones-container li {
-        @apply flex flex-row justify-center items-center ;
+        @apply flex flex-row justify-center items-center mt-[.7rem] ;
     }
     .visual-23h-boxes-container-saved-zones {
-        @apply flex flex-row justify-center items-center m-1  absolute
-                top-[1.4] left-[4.4];
+        @apply flex flex-row justify-center items-center m-1 
+                top-[1.4rem] left-[4.4rem] absolute;
         @variant tablet {
             @apply relative my-12 mx-0;
         }
@@ -19,7 +19,10 @@
         }
     }
     .saved-city-offset {
-        @apply absolute flex flex-col top-0 left-[0.6rem] gap-[.3rem];
+        @apply absolute flex flex-col top-[-1rem] left-[0.6rem] gap-[.3rem];
+        @variant tablet {
+            @apply static;
+        }
     }
     .saved-city {
         @apply font-[500];
@@ -40,7 +43,7 @@
         }
     }
     .removeBtn {
-        @apply absolute top-[2.4rem] left-[20rem] py-[.3rem] px-[.6rem] text-(--font-color)
+        @apply absolute top-[1.6rem] left-[20rem] py-[.3rem] px-[.6rem] text-(--font-color)
     }
     .now-saved-zones {
         @apply absolute top-[-2.2rem] left-[5.2rem] text-[.7rem]
@@ -48,6 +51,9 @@
     }
     .saved-time-period {
         @apply flex flex-row justify-center items-center;
+        @variant tablet {
+            @apply relative;
+        };
     }
     .saved-city, .saved-offset, .saved-time, .saved-period {
         @apply text-(--font-color);
