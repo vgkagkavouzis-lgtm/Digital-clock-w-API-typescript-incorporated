@@ -2,43 +2,58 @@
     .saved-zones-container li {
         @apply flex flex-row justify-center items-center ;
     }
+    .visual-23h-boxes-container-saved-zones {
+        @apply flex flex-row justify-center items-center m-1  absolute
+                top-[1.4] left-[4.4];
+        @variant tablet {
+            @apply relative my-12 mx-0;
+        }
+    }
     .div-saved-city-time-removeBtn {
-        @apply list-none flex flex-row items-center justify-between my-4 
+        @apply relative list-none flex flex-col items-start justify-between my-4 
                 border-b-(length:--border-width) border-(--border-color) 
-                pr-4 pb-4 pl-4 w-(--general-width) ;
+                p-1 w-(--general-width) h-[6rem] m-4;
+        @variant tablet {
+            @apply flex-row pt-0 pr-4 pb-4 pl-4 w-(--general-width) 
+                   items-center h-auto m-0; 
+        }
     }
     .saved-city-offset {
-        @apply flex flex-col;
+        @apply absolute flex flex-col top-0 left-[0.6rem] gap-[.3rem];
     }
-    .saved-time-period {
-        @apply relative flex flex-row justify-center items-center;
+    .saved-city {
+        @apply font-[500];
+    }
+    .saved-offset {
+        @apply text-[.7rem]
     }
     .saved-time {
-        @apply absolute left-[0rem] top-[-3.7rem] h-[50%] -translate-y-[55%] text-[1.2rem];
+        @apply absolute left-[14.9rem] top-[-1.2rem]  text-[1.2rem];
         @variant tablet {
-            @apply left-[-2.3rem] top-[-.8rem];
+            @apply  left-[-2.3rem] top-[-.8rem];
         }
     }
     .saved-period {
-        @apply text-[.6rem] absolute top-[-2.5rem] left-[5rem];
+        @apply text-[.6rem] absolute top-[-.4rem] left-[20rem];
         @variant tablet {
             @apply top-0 left-[2.9rem];
         }
     }
     .removeBtn {
-        @apply py-[.3rem] px-[.6rem] text-(--font-color)
+        @apply absolute top-[2.4rem] left-[20rem] py-[.3rem] px-[.6rem] text-(--font-color)
+    }
+    .now-saved-zones {
+        @apply absolute top-[-2.2rem] left-[5.2rem] text-[.7rem]
+                 after:top-[1rem] after:left-[.5rem];
+    }
+    .saved-time-period {
+        @apply flex flex-row justify-center items-center;
     }
     .saved-city, .saved-offset, .saved-time, .saved-period {
         @apply text-(--font-color);
     }
-    .visual-23h-boxes-container-saved-zones {
-        @apply flex flex-row justify-center items-center my-12 relative;
-    }
+
     .saved-zones-23hVisual {
         @apply w-[.2rem];
-    }
-    .now-saved-zones {
-        @apply hidden -top-10 left-40
-                after:hidden after:top-[1.2rem] after:left-[.6rem];
     }
 }
